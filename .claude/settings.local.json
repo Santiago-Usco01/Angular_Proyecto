@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --yes @angular/cli@latest new festival --style=scss --routing --ssr=false --skip-git --defaults)"
+    ]
+  }
+}
