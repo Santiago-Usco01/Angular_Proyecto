@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
 })
 export class Artistas {
   artistas = [
-    { nombre: 'Ballet Folclórico Opita', tipo: 'Danza', descripcion: 'Grupo de danza con trajes típicos del Huila.' },
-    { nombre: 'Trío Los Cantores del Magdalena', tipo: 'Música', descripcion: 'Trío que interpreta bambucos y pasillos.' },
-    { nombre: 'Banda Municipal de Neiva', tipo: 'Música', descripcion: 'Banda que acompaña los desfiles y actos oficiales.' },
-    { nombre: 'Comparsa San Pedrito', tipo: 'Comparsa', descripcion: 'Comparsa infantil con disfraces y carrozas.' },
-    { nombre: 'Grupo Rajaleña Viva', tipo: 'Música', descripcion: 'Grupo dedicado a la rajaleña y la música campesina.' },
-    { nombre: 'Academia de Danza Tierra Huilense', tipo: 'Danza', descripcion: 'Presentación de bailes tradicionales del departamento.' },
+    { nombre: 'Ballet Folclórico Opita', tipo: 'Danza', imagen: 'img/artista-ballet.webp', descripcion: 'Pareja de baile con trajes típicos del Huila.' },
+    { nombre: 'Comparsa San Pedrito', tipo: 'Comparsa', imagen: 'img/artista-comparsa.png', descripcion: 'Comparsa con disfraces y mucho color para los desfiles.' },
+    { nombre: 'Academia de Danza Tierra Huilense', tipo: 'Danza', imagen: 'img/artista-academia.webp', descripcion: 'Presentación de bailes tradicionales del departamento.' },
+    { nombre: 'Grupo Rajaleña Viva', tipo: 'Danza', imagen: 'img/artista-rajalena.webp', descripcion: 'Grupo dedicado a la rajaleña y al baile campesino.' },
+    { nombre: 'Cuadro Folclórico Sol del Magdalena', tipo: 'Danza', imagen: 'img/artista-tierra.webp', descripcion: 'Bailarines que muestran el bambuco en las calles.' },
+    { nombre: 'Danzas Los Palmeros', tipo: 'Danza', imagen: 'img/artista-palmeros.webp', descripcion: 'Grupo de baile con vestuario blanco y negro.' },
   ];
 }

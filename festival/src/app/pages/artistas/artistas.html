@@ -5,9 +5,12 @@
   <div class="tarjetas">
     @for (a of artistas; track a.nombre) {
       <div class="tarjeta">
-        <h3>{{ a.nombre }}</h3>
-        <p class="etiqueta">{{ a.tipo }}</p>
-        <p>{{ a.descripcion }}</p>
+        <img [src]="a.imagen" [alt]="a.nombre" />
+        <div class="tarjeta-texto">
+          <p class="etiqueta">{{ a.tipo }}</p>
+          <h3>{{ a.nombre }}</h3>
+          <p>{{ a.descripcion }}</p>
+        </div>
       </div>
     }
   </div>

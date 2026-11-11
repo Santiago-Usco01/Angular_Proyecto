@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "festival",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "festival", "start"],
+      "port": 4200
+    }
+  ]
+}
