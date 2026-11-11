@@ -1,0 +1,14 @@
+<section class="contenido">
+  <h1>Artistas invitados</h1>
+  <p>Algunos de los grupos que se presentan en el festival (nombres de ejemplo).</p>
+
+  <div class="tarjetas">
+    @for (a of artistas; track a.nombre) {
+      <div class="tarjeta">
+        <h3>{{ a.nombre }}</h3>
+        <p class="etiqueta">{{ a.tipo }}</p>
+        <p>{{ a.descripcion }}</p>
+      </div>
+    }
+  </div>
+</section>

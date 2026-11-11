@@ -1,0 +1,60 @@
+<section class="contenido">
+  <h1>Inscripción</h1>
+
+  @if (!enviado) {
+    <p>Llena el formulario para registrarte al festival.</p>
+
+    <form [formGroup]="formulario" (ngSubmit)="enviar()">
+      <label for="nombre">Nombre completo</label>
+      <input id="nombre" type="text" formControlName="nombre" />
+      @if (formulario.controls.nombre.touched && formulario.controls.nombre.invalid) {
+        <small class="error">Escribe tu nombre (mínimo 3 letras).</small>
+      }
+
+      <label for="correo">Correo electrónico</label>
+      <input id="correo" type="email" formControlName="correo" />
+      @if (formulario.controls.correo.touched && formulario.controls.correo.invalid) {
+        <small class="error">Escribe un correo válido.</small>
+      }
+
+      <label for="telefono">Teléfono (opcional)</label>
+      <input id="telefono" type="text" formControlName="telefono" />
+      @if (formulario.controls.telefono.touched && formulario.controls.telefono.invalid) {
+        <small class="error">Solo números, entre 7 y 10 dígitos.</small>
+      }
+
+      <label for="asistentes">Número de asistentes</label>
+      <input id="asistentes" type="number" formControlName="asistentes" />
+      @if (formulario.controls.asistentes.touched && formulario.controls.asistentes.invalid) {
+        <small class="error">Debe ser un número entre 1 y 10.</small>
+      }
+
+      <label for="actividad">¿Qué actividad te interesa más?</label>
+      <select id="actividad" formControlName="actividad">
+        <option value="">Selecciona una opción</option>
+        <option value="Desfiles">Desfiles</option>
+        <option value="Música">Música</option>
+        <option value="Danza">Danza</option>
+        <option value="Gastronomía">Gastronomía</option>
+      </select>
+      @if (formulario.controls.actividad.touched && formulario.controls.actividad.invalid) {
+        <small class="error">Selecciona una actividad.</small>
+      }
+
+      <button type="submit" class="boton">Enviar</button>
+    </form>
+  } @else {
+    <div class="confirmacion">
+      <h2>¡Gracias por inscribirte!</h2>
+      <p>Estos son los datos que registraste:</p>
+      <ul>
+        <li>Nombre: {{ datos.nombre }}</li>
+        <li>Correo: {{ datos.correo }}</li>
+        <li>Teléfono: {{ datos.telefono || 'No indicado' }}</li>
+        <li>Asistentes: {{ datos.asistentes }}</li>
+        <li>Actividad de interés: {{ datos.actividad }}</li>
+      </ul>
+      <button class="boton" (click)="nuevaInscripcion()">Nueva inscripción</button>
+    </div>
+  }
+</section>

@@ -1,0 +1,26 @@
+<section class="contenido">
+  <h1>Programación</h1>
+  <p>Estos son los eventos principales del festival.</p>
+
+  @for (dia of dias; track dia.fecha) {
+    <h2>{{ dia.fecha }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Evento</th>
+          <th>Lugar</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of dia.eventos; track e.nombre) {
+          <tr>
+            <td>{{ e.hora }}</td>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.lugar }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>
