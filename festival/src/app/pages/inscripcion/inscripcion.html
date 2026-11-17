@@ -1,60 +1,95 @@
-<section class="contenido">
+<section class="encabezado-pagina">
   <h1>Inscripción</h1>
+  <p>Regístrate y asegura tu lugar en el Festival Folclórico de Neiva.</p>
+</section>
 
-  @if (!enviado) {
-    <p>Llena el formulario para registrarte al festival.</p>
+<section class="contenido ancho">
+  <div class="inscripcion">
+    <div class="inscripcion-principal">
+      @if (!enviado) {
+        <form [formGroup]="formulario" (ngSubmit)="enviar()">
+          <h2>Datos del asistente</h2>
 
-    <form [formGroup]="formulario" (ngSubmit)="enviar()">
-      <label for="nombre">Nombre completo</label>
-      <input id="nombre" type="text" formControlName="nombre" />
-      @if (formulario.controls.nombre.touched && formulario.controls.nombre.invalid) {
-        <small class="error">Escribe tu nombre (mínimo 3 letras).</small>
+          <div class="fila">
+            <div class="campo">
+              <label for="nombre">Nombre completo</label>
+              <input id="nombre" type="text" formControlName="nombre" />
+              @if (formulario.controls.nombre.touched && formulario.controls.nombre.invalid) {
+                <small class="error">Escribe tu nombre (mínimo 3 letras).</small>
+              }
+            </div>
+
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input id="correo" type="email" formControlName="correo" />
+              @if (formulario.controls.correo.touched && formulario.controls.correo.invalid) {
+                <small class="error">Escribe un correo válido.</small>
+              }
+            </div>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="telefono">Teléfono (opcional)</label>
+              <input id="telefono" type="text" formControlName="telefono" />
+              @if (formulario.controls.telefono.touched && formulario.controls.telefono.invalid) {
+                <small class="error">Solo números, entre 7 y 10 dígitos.</small>
+              }
+            </div>
+
+            <div class="campo">
+              <label for="asistentes">Número de asistentes</label>
+              <input id="asistentes" type="number" formControlName="asistentes" />
+              @if (formulario.controls.asistentes.touched && formulario.controls.asistentes.invalid) {
+                <small class="error">Debe ser un número entre 1 y 10.</small>
+              }
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="actividad">¿Qué actividad te interesa más?</label>
+            <select id="actividad" formControlName="actividad">
+              <option value="">Selecciona una opción</option>
+              <option value="Desfiles">Desfiles</option>
+              <option value="Música">Música</option>
+              <option value="Danza">Danza</option>
+              <option value="Gastronomía">Gastronomía</option>
+            </select>
+            @if (formulario.controls.actividad.touched && formulario.controls.actividad.invalid) {
+              <small class="error">Selecciona una actividad.</small>
+            }
+          </div>
+
+          <button type="submit" class="boton">Enviar inscripción</button>
+        </form>
+      } @else {
+        <div class="confirmacion">
+          <h2>¡Gracias por inscribirte!</h2>
+          <p>Estos son los datos que registraste:</p>
+          <ul>
+            <li><strong>Nombre:</strong> {{ datos.nombre }}</li>
+            <li><strong>Correo:</strong> {{ datos.correo }}</li>
+            <li><strong>Teléfono:</strong> {{ datos.telefono || 'No indicado' }}</li>
+            <li><strong>Asistentes:</strong> {{ datos.asistentes }}</li>
+            <li><strong>Actividad de interés:</strong> {{ datos.actividad }}</li>
+          </ul>
+          <button class="boton" (click)="nuevaInscripcion()">Nueva inscripción</button>
+        </div>
       }
-
-      <label for="correo">Correo electrónico</label>
-      <input id="correo" type="email" formControlName="correo" />
-      @if (formulario.controls.correo.touched && formulario.controls.correo.invalid) {
-        <small class="error">Escribe un correo válido.</small>
-      }
-
-      <label for="telefono">Teléfono (opcional)</label>
-      <input id="telefono" type="text" formControlName="telefono" />
-      @if (formulario.controls.telefono.touched && formulario.controls.telefono.invalid) {
-        <small class="error">Solo números, entre 7 y 10 dígitos.</small>
-      }
-
-      <label for="asistentes">Número de asistentes</label>
-      <input id="asistentes" type="number" formControlName="asistentes" />
-      @if (formulario.controls.asistentes.touched && formulario.controls.asistentes.invalid) {
-        <small class="error">Debe ser un número entre 1 y 10.</small>
-      }
-
-      <label for="actividad">¿Qué actividad te interesa más?</label>
-      <select id="actividad" formControlName="actividad">
-        <option value="">Selecciona una opción</option>
-        <option value="Desfiles">Desfiles</option>
-        <option value="Música">Música</option>
-        <option value="Danza">Danza</option>
-        <option value="Gastronomía">Gastronomía</option>
-      </select>
-      @if (formulario.controls.actividad.touched && formulario.controls.actividad.invalid) {
-        <small class="error">Selecciona una actividad.</small>
-      }
-
-      <button type="submit" class="boton">Enviar</button>
-    </form>
-  } @else {
-    <div class="confirmacion">
-      <h2>¡Gracias por inscribirte!</h2>
-      <p>Estos son los datos que registraste:</p>
-      <ul>
-        <li>Nombre: {{ datos.nombre }}</li>
-        <li>Correo: {{ datos.correo }}</li>
-        <li>Teléfono: {{ datos.telefono || 'No indicado' }}</li>
-        <li>Asistentes: {{ datos.asistentes }}</li>
-        <li>Actividad de interés: {{ datos.actividad }}</li>
-      </ul>
-      <button class="boton" (click)="nuevaInscripcion()">Nueva inscripción</button>
     </div>
-  }
+
+    <aside class="inscripcion-lateral">
+      <img src="img/musica-baile.webp" alt="Pareja bailando bambuco" />
+      <div class="lateral-texto">
+        <h3>Información importante</h3>
+        <ul>
+          <li><strong>Fechas:</strong> 26 de junio al 5 de julio de 2027</li>
+          <li><strong>Ciudad:</strong> Neiva, Huila</li>
+          <li><strong>Entrada:</strong> gratis con inscripción</li>
+          <li><strong>Máximo:</strong> 10 personas por registro</li>
+        </ul>
+        <p>Con tu inscripción te mantendremos informado sobre la programación del festival.</p>
+      </div>
+    </aside>
+  </div>
 </section>
