@@ -1,59 +1,81 @@
-# Festival
+# Festival Folclórico de Neiva
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.6.
+Página web informativa sobre el Festival Folclórico de Neiva (Huila, Colombia), hecha con Angular para la clase de Tecnología Web (USCO).
 
-## Development server
+La página muestra información del festival y tiene un formulario de inscripción. No usa base de datos ni backend: los datos del formulario solo se muestran en pantalla y no se guardan.
 
-To start a local development server, run:
+> Las fechas, la programación y los nombres de los artistas son de ejemplo para el proyecto de clase.
+
+## Páginas
+
+| Ruta | Contenido |
+|---|---|
+| `/` | Inicio: banner, datos principales, qué es el festival y qué se puede hacer |
+| `/programacion` | Tabla de eventos por día (hora, evento y lugar) |
+| `/artistas` | Tarjetas con los grupos invitados |
+| `/inscripcion` | Formulario de inscripción y panel con información |
+
+## Formulario de inscripción
+
+Está hecho con formularios reactivos de Angular (`ReactiveFormsModule`). Campos y validaciones:
+
+- **Nombre completo:** obligatorio, mínimo 3 caracteres.
+- **Correo electrónico:** obligatorio, con formato de correo.
+- **Teléfono:** opcional, solo números (7 a 10 dígitos).
+- **Número de asistentes:** obligatorio, entre 1 y 10.
+- **Actividad de interés:** obligatoria (desfiles, música, danza o gastronomía).
+
+Los errores aparecen cuando el usuario toca un campo y está mal, o al intentar enviar el formulario incompleto. Si todo está bien, se muestra una pantalla de confirmación con los datos.
+
+## Estructura del proyecto
+
+```
+src/
+├── index.html
+├── styles.scss              # estilos de toda la página
+└── app/
+    ├── app.ts / app.html    # componente principal (navbar + rutas + footer)
+    ├── app.routes.ts        # definición de las rutas
+    ├── components/
+    │   ├── navbar/
+    │   └── footer/
+    └── pages/
+        ├── inicio/
+        ├── programacion/
+        ├── artistas/
+        └── inscripcion/
+public/
+├── img/                     # fotos de la página
+├── logo-neiva.png           # escudo usado como ícono de la pestaña
+└── favicon.ico
+```
+
+Los datos de la programación y de los artistas están dentro del archivo `.ts` de cada página. Los colores se definen al inicio de `src/styles.scss` (bloque `:root`).
+
+## Cómo correr el proyecto
+
+Requisitos: Node.js y npm.
 
 ```bash
+cd festival
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Luego abrir `http://localhost:4200/` en el navegador. Si `ng` no se reconoce, usar `npx ng serve`.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Para generar la versión de producción:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Tecnologías
 
-## Running unit tests
+- Angular (componentes standalone, Router, Reactive Forms)
+- TypeScript
+- SCSS
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Repositorio
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[github.com/Santiago-Usco01/Angular_Proyecto](https://github.com/Santiago-Usco01/Angular_Proyecto). La rama de trabajo es `develop`.
