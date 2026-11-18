@@ -1,26 +1,28 @@
-<section class="contenido">
+<!-- encabezado con foto (la foto se elige con la clase fondo-programacion) -->
+<section class="encabezado-pagina fondo-programacion">
   <h1>Programación</h1>
   <p>Estos son los eventos principales del festival.</p>
+</section>
 
-  @for (dia of dias; track dia.fecha) {
-    <h2>{{ dia.fecha }}</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Hora</th>
-          <th>Evento</th>
-          <th>Lugar</th>
-        </tr>
-      </thead>
-      <tbody>
+<section class="contenido ancho">
+  <!-- una tarjeta por cada día del arreglo "dias" de programacion.ts -->
+  <div class="dias">
+    @for (dia of dias; track dia.fecha) {
+      <div class="dia">
+        <h2>{{ dia.fecha }}</h2>
+        <!-- dentro de cada día se recorren sus eventos -->
         @for (e of dia.eventos; track e.nombre) {
-          <tr>
-            <td>{{ e.hora }}</td>
-            <td>{{ e.nombre }}</td>
-            <td>{{ e.lugar }}</td>
-          </tr>
+          <div class="evento">
+            <span class="hora">{{ e.hora }}</span>
+            <div>
+              <h3>{{ e.nombre }}</h3>
+              <p>{{ e.lugar }}</p>
+            </div>
+          </div>
         }
-      </tbody>
-    </table>
-  }
+      </div>
+    }
+  </div>
+
+  <p class="nota">* La programación es de ejemplo y puede cambiar.</p>
 </section>

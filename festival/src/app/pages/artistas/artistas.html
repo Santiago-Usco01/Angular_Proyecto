@@ -1,8 +1,12 @@
-<section class="contenido">
+<!-- encabezado con foto (la foto se elige con la clase fondo-artistas) -->
+<section class="encabezado-pagina fondo-artistas">
   <h1>Artistas invitados</h1>
   <p>Algunos de los grupos que se presentan en el festival (nombres de ejemplo).</p>
+</section>
 
+<section class="contenido ancho">
   <div class="tarjetas">
+    <!-- se crea una tarjeta por cada artista del arreglo de artistas.ts -->
     @for (a of artistas; track a.nombre) {
       <div class="tarjeta">
         <img [src]="a.imagen" [alt]="a.nombre" />

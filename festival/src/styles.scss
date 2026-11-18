@@ -1,62 +1,95 @@
-/* colores de la página */
+/* =========================================================
+   ESTILOS GENERALES - FESTIVAL FOLCLÓRICO DE NEIVA
+   Todos los estilos de la página están en este archivo.
+   ========================================================= */
+
+/* ---------- 1. COLORES (variables) ----------
+   Se guardan los colores en variables para usarlos en toda la página.
+   Si se quiere cambiar un color, solo se cambia aquí. */
 :root {
-  --rojo: #8b1e1e;
-  --rojo-claro: #c0392b;
-  --amarillo: #f4b942;
-  --fondo: #fbf5ea;
-  --texto: #3a3a3a;
-  --borde: #e5dccb;
+  --rojo: #8e1f2f;           /* color principal: navbar, títulos, footer */
+  --rojo-claro: #b8394a;     /* errores del formulario y borde al escribir */
+  --rojo-suave: #f7e4e2;     /* fondo de las etiquetas y de la hora */
+  --amarillo: #eab543;       /* color de acento: botones y líneas */
+  --amarillo-suave: #fdf1d6; /* fondo del recuadro destacado */
+  --fondo: #fcf6ec;          /* crema de fondo */
+  --texto: #3d3434;
+  --borde: #ecdfcd;
+  --sombra: 0 4px 16px rgba(110, 40, 30, 0.08); /* sombra suave de las cajas */
 }
 
+/* ---------- 2. BASE ---------- */
+
+/* el padding y el borde se cuentan dentro del ancho de cada elemento */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  /* Poppins viene de Google Fonts (index.html); si no hay internet usa Segoe UI */
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   color: var(--texto);
+  line-height: 1.7;
+  /* fondo crema con puntitos: radial-gradient dibuja un punto
+     y background-size lo repite cada 22px */
   background-color: var(--fondo);
-  line-height: 1.6;
+  background-image: radial-gradient(rgba(142, 31, 47, 0.07) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
 }
 
+/* fuente elegante para todos los títulos */
 h1,
 h2,
 h3 {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Playfair Display', Georgia, serif;
   color: var(--rojo);
+  line-height: 1.3;
 }
 
-/* barra de navegación */
+/* ---------- 3. BARRA DE NAVEGACIÓN ---------- */
+
+/* sticky hace que la barra se quede arriba al bajar en la página */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 10;
   background-color: var(--rojo);
   color: white;
-  padding: 14px 32px;
+  padding: 10px 32px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* logo a la izquierda, menú a la derecha */
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid var(--amarillo);
 }
 
+/* escudo y nombre del festival, uno al lado del otro */
 .navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: white;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-weight: bold;
-  font-size: 1.3rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.25rem;
   text-decoration: none;
+}
+
+.navbar .logo img {
+  height: 40px;
 }
 
 .navbar nav a {
-  color: #f5e6e6;
+  color: #f8e9e9;
   text-decoration: none;
   margin-left: 22px;
   padding: 4px 0;
+  font-size: 0.95rem;
   border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .navbar nav a:hover {
@@ -64,46 +97,55 @@ h3 {
   border-bottom-color: rgba(255, 255, 255, 0.5);
 }
 
+/* la clase "activo" la pone Angular (routerLinkActive) en la página actual */
 .navbar nav a.activo {
   color: white;
   border-bottom-color: var(--amarillo);
 }
 
-/* banner de inicio */
+/* ---------- 4. BANNER DE INICIO ---------- */
+
+/* la foto lleva encima una capa oscura (linear-gradient) para que se lea el título.
+   Arriba es más clara (0.25) y abajo más oscura (0.6) */
 .banner {
-  background: linear-gradient(rgba(90, 15, 15, 0.65), rgba(90, 15, 15, 0.8)),
-    url('/img/banner.webp') center 40% / cover;
+  background: linear-gradient(rgba(60, 15, 20, 0.25), rgba(60, 15, 20, 0.6)),
+    url('/img/artista-tierra.webp') center 35% / cover;
   color: white;
   text-align: center;
-  padding: 110px 20px 100px;
+  padding: 120px 20px 110px;
 }
 
+/* text-shadow: sombra en la letra para que resalte sobre la foto */
 .banner h1 {
   color: white;
   margin: 0 0 12px;
-  font-size: 3rem;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  font-size: 3.2rem;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
 }
 
 .banner p {
   margin: 0;
   font-size: 1.2rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* franja con los datos principales */
+/* ---------- 5. FRANJA DE DATOS (fechas, ciudad, entrada) ---------- */
+
+/* el margin negativo (-36px) la sube para que quede encima del banner */
 .datos {
   max-width: 900px;
-  margin: -32px auto 0;
+  margin: -36px auto 0;
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  border-top: 4px solid var(--amarillo);
+  box-shadow: 0 8px 24px rgba(110, 40, 30, 0.14);
 }
 
 .dato {
-  padding: 16px 20px;
+  padding: 18px 20px;
   text-align: center;
   border-right: 1px solid var(--borde);
 }
@@ -114,17 +156,24 @@ h3 {
 
 .dato strong {
   display: block;
-  color: var(--rojo-claro);
-  font-size: 0.8rem;
+  color: var(--rojo);
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
-/* contenido general */
+/* ---------- 6. CONTENIDO GENERAL ---------- */
+
+/* caja centrada donde va el contenido de cada página */
 .contenido {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 44px 20px;
+}
+
+/* versión más ancha (programación, artistas e inscripción) */
+.contenido.ancho {
+  max-width: 1000px;
 }
 
 .contenido h1,
@@ -132,6 +181,7 @@ h3 {
   margin-top: 0;
 }
 
+/* ::after agrega la rayita amarilla debajo de los títulos */
 .contenido h1::after,
 .contenido h2::after {
   content: '';
@@ -139,6 +189,7 @@ h3 {
   width: 50px;
   height: 3px;
   background-color: var(--amarillo);
+  border-radius: 3px;
   margin-top: 8px;
 }
 
@@ -146,131 +197,197 @@ h3 {
   margin-top: 36px;
 }
 
-.nota {
-  font-size: 0.85rem;
-  color: #777;
-  margin-top: 32px;
+/* recuadro amarillo para la frase del bambuco en inicio */
+.destacado {
+  background-color: var(--amarillo-suave);
+  border-left: 4px solid var(--amarillo);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 20px;
+  font-style: italic;
 }
 
-/* tarjetas */
+/* texto pequeño de aclaración (programación) */
+.nota {
+  font-size: 0.85rem;
+  color: #8a7f7f;
+  margin-top: 28px;
+}
+
+/* ---------- 7. TARJETAS (inicio y artistas) ---------- */
+
+/* auto-fill con minmax: pone las tarjetas que quepan por fila
+   y cada una mide mínimo 250px */
 .tarjetas {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 24px;
+  gap: 26px;
   margin-top: 20px;
 }
 
 .tarjeta {
   background-color: white;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  overflow: hidden; /* para que la foto no se salga de las esquinas redondas */
+  box-shadow: var(--sombra);
+  border-bottom: 4px solid var(--amarillo);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
+/* al pasar el mouse la tarjeta sube un poquito */
 .tarjeta:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 26px rgba(110, 40, 30, 0.16);
 }
 
+/* object-fit: cover recorta la foto sin deformarla */
 .tarjeta img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s;
+}
+
+/* la foto se acerca un poquito al pasar el mouse */
+.tarjeta:hover img {
+  transform: scale(1.06);
 }
 
 .tarjeta-texto {
-  padding: 16px 18px 20px;
+  padding: 18px 20px 22px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: white;
+  position: relative;
 }
 
 .tarjeta h3 {
-  margin: 0 0 8px;
-  font-size: 1.1rem;
-  min-height: 2.8em; /* deja espacio para 2 líneas y así todos quedan alineados */
+  margin: 0 0 6px;
+  font-size: 1.15rem;
 }
 
 .tarjeta p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  color: #5c5252;
 }
 
+/* etiqueta con el tipo de artista (Danza, Comparsa) */
 .etiqueta {
   display: inline-block;
-  background-color: var(--amarillo);
-  color: #4a3200;
+  background-color: var(--rojo-suave);
+  color: var(--rojo) !important;
   padding: 2px 12px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: bold;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 10px !important;
 }
 
-/* tablas */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  margin: 16px 0 8px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-th,
-td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid var(--borde);
-}
-
-th {
-  background-color: var(--rojo);
-  color: white;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #fdf9f1;
-}
-
-tbody tr:hover {
-  background-color: #fbeccc;
-}
-
-tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* encabezado de las páginas internas */
+/* ---------- 8. ENCABEZADO DE LAS PÁGINAS INTERNAS ----------
+   Programación, artistas e inscripción usan el mismo encabezado.
+   Solo cambia la foto con una segunda clase (fondo-...). */
 .encabezado-pagina {
-  background-color: var(--rojo);
+  background: linear-gradient(rgba(60, 15, 20, 0.3), rgba(60, 15, 20, 0.6)),
+    url('/img/artista-tierra.webp') center / cover;
   color: white;
   text-align: center;
-  padding: 40px 20px;
+  padding: 64px 20px;
+}
+
+/* foto de cada página (se vuelve a escribir la capa oscura) */
+.fondo-programacion {
+  background-image: linear-gradient(rgba(60, 15, 20, 0.3), rgba(60, 15, 20, 0.6)),
+    url('/img/cabezudos.jpg');
+  background-position: center 55%;
+}
+
+.fondo-artistas {
+  background-image: linear-gradient(rgba(60, 15, 20, 0.3), rgba(60, 15, 20, 0.6)),
+    url('/img/musica-baile.webp');
+}
+
+.fondo-inscripcion {
+  background-image: linear-gradient(rgba(60, 15, 20, 0.3), rgba(60, 15, 20, 0.6)),
+    url('/img/artista-palmeros.webp');
 }
 
 .encabezado-pagina h1 {
   color: white;
   margin: 0 0 6px;
+  font-size: 2.4rem;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .encabezado-pagina p {
   margin: 0;
-  color: #f5e6e6;
+  color: #fff4ec;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-.contenido.ancho {
-  max-width: 1000px;
+/* ---------- 9. PROGRAMACIÓN (una tarjeta por día) ---------- */
+
+/* dos días por fila; si no caben (menos de 400px) baja a uno */
+.dias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 26px;
 }
 
-/* página de inscripción: formulario a la izquierda e información a la derecha */
+.dia {
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+  border-top: 4px solid var(--amarillo);
+  padding: 22px 24px 10px;
+}
+
+.contenido .dia h2 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+}
+
+/* cada evento: la hora a la izquierda, y el nombre y el lugar a la derecha */
+.evento {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px dashed var(--borde);
+}
+
+/* "pastilla" con la hora; flex-shrink: 0 evita que se aplaste */
+.hora {
+  flex-shrink: 0;
+  min-width: 92px;
+  text-align: center;
+  background-color: var(--rojo-suave);
+  color: var(--rojo);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.evento h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.evento p {
+  margin: 2px 0 0;
+  font-size: 0.88rem;
+  color: #7a6e6e;
+}
+
+/* ---------- 10. INSCRIPCIÓN ---------- */
+
+/* dos columnas: formulario (1.6 partes) e información (1 parte) */
 .inscripcion {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
@@ -278,23 +395,28 @@ tbody tr:last-child td {
   align-items: start;
 }
 
+/* caja blanca de la derecha con la foto y la información */
 .inscripcion-lateral {
   background-color: white;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--sombra);
+  padding: 14px;
 }
 
+/* aspect-ratio deja la foto en proporción 4:3 y
+   object-position mueve el recorte para que la pareja quede centrada */
 .inscripcion-lateral img {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: 45% center;
+  border-radius: 10px;
   display: block;
 }
 
 .lateral-texto {
-  padding: 18px 22px 22px;
+  padding: 16px 8px 8px;
 }
 
 .lateral-texto h3 {
@@ -310,36 +432,43 @@ tbody tr:last-child td {
 .lateral-texto li {
   padding: 8px 0;
   border-bottom: 1px solid var(--borde);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+}
+
+.lateral-texto li strong {
+  color: var(--rojo);
 }
 
 .lateral-texto p {
   margin: 0;
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.88rem;
+  color: #7a6e6e;
 }
 
-/* formulario */
+/* ---------- 11. FORMULARIO ---------- */
+
 form {
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  padding: 24px 28px 28px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 26px 30px 30px;
+  box-shadow: var(--sombra);
+  border-top: 4px solid var(--amarillo);
 }
 
 form h2 {
   margin-top: 0;
 }
 
+/* fila con dos campos lado a lado */
 .fila {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
+/* cada campo: el label arriba y el input abajo */
 .campo {
   display: flex;
   flex-direction: column;
@@ -351,58 +480,71 @@ form .boton {
 
 label {
   margin-top: 16px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.92rem;
 }
 
 input,
 select {
-  padding: 10px;
-  margin-top: 4px;
-  border: 1px solid #bbb;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 11px 12px;
+  margin-top: 5px;
+  border: 1px solid #ddd0bf;
+  border-radius: 8px;
+  background-color: #fffdf9;
+  font-size: 0.95rem;
   font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+/* :focus es cuando el usuario está escribiendo en el campo */
 input:focus,
 select:focus {
   outline: none;
   border-color: var(--rojo-claro);
-  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
+  box-shadow: 0 0 0 3px rgba(184, 57, 74, 0.15);
 }
 
+/* mensajes de error de las validaciones */
 .error {
   color: var(--rojo-claro);
   margin-top: 3px;
+  font-size: 0.82rem;
 }
 
+/* ---------- 12. BOTÓN ---------- */
+
+/* se usa en el banner (Inscríbete) y en el formulario */
 .boton {
   display: inline-block;
   background-color: var(--amarillo);
   color: #3a2a00;
   border: none;
-  padding: 12px 28px;
+  padding: 12px 30px;
   margin-top: 24px;
-  border-radius: 6px;
+  border-radius: 30px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
   font-family: inherit;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s;
+  box-shadow: 0 4px 12px rgba(234, 181, 67, 0.4);
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .boton:hover {
-  background-color: #e0a52e;
+  background-color: #dca32f;
+  transform: translateY(-2px);
 }
 
+/* ---------- 13. CONFIRMACIÓN DE LA INSCRIPCIÓN ---------- */
+
+/* caja que aparece después de enviar el formulario */
 .confirmacion {
   background-color: white;
-  border: 1px solid var(--borde);
-  border-left: 5px solid var(--amarillo);
-  border-radius: 8px;
-  padding: 20px 28px 28px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  border-top: 4px solid var(--amarillo);
+  padding: 22px 30px 30px;
+  box-shadow: var(--sombra);
 }
 
 .confirmacion ul {
@@ -419,40 +561,64 @@ select:focus {
   margin-top: 0;
 }
 
-/* pie de página */
+/* ---------- 14. PIE DE PÁGINA ---------- */
+
+/* los dos textos van en una sola franja; flex-wrap los baja si no caben */
 .footer {
-  background-color: #2b1a1a;
-  color: #e8dcdc;
-  text-align: center;
-  padding: 28px 16px;
-  margin-top: 40px;
-  font-size: 0.9rem;
-  border-top: 4px solid var(--amarillo);
+  background-color: var(--rojo);
+  color: #f8e9e9;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  padding: 16px;
+  margin-top: 30px;
+  font-size: 0.85rem;
+  border-top: 3px solid var(--amarillo);
 }
 
 .footer p {
-  margin: 4px 0;
+  margin: 0;
+}
+
+/* ---------- 15. RESPONSIVE (pantallas pequeñas) ----------
+   @media aplica estos estilos solo si la pantalla es más angosta */
+
+/* tablets: la programación queda en una sola columna */
+@media (max-width: 900px) {
+  .dias {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* celulares */
 @media (max-width: 600px) {
   .navbar {
-    padding: 12px 16px;
+    padding: 10px 16px;
     justify-content: center;
   }
 
   .navbar nav a {
-    margin: 0 10px;
+    margin: 0 8px;
   }
 
   .banner {
-    padding: 70px 16px 70px;
+    padding: 80px 16px;
   }
 
   .banner h1 {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
   }
 
+  .encabezado-pagina {
+    padding: 44px 16px;
+  }
+
+  .encabezado-pagina h1 {
+    font-size: 1.9rem;
+  }
+
+  /* el formulario y la información quedan uno debajo del otro */
   .inscripcion,
   .fila {
     grid-template-columns: 1fr;
@@ -468,9 +634,7 @@ select:focus {
     border-bottom: 1px solid var(--borde);
   }
 
-  th,
-  td {
-    padding: 8px;
-    font-size: 0.9rem;
+  .hora {
+    min-width: 78px;
   }
 }

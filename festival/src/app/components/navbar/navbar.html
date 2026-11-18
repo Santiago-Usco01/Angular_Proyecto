@@ -1,5 +1,9 @@
 <header class="navbar">
-  <a routerLink="/" class="logo">Festival Folclórico de Neiva</a>
+  <!-- escudo de Neiva y nombre; al dar clic lleva al inicio -->
+  <a routerLink="/" class="logo">
+    <img src="logo-neiva.png" alt="Escudo de Neiva" />
+    Festival Folclórico de Neiva
+  </a>
   <nav>
     <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
     <a routerLink="/programacion" routerLinkActive="activo">Programación</a>
