@@ -1,13 +1,13 @@
 <header class="navbar">
-  <!-- escudo de Neiva y nombre; al dar clic lleva al inicio -->
-  <a routerLink="/" class="logo">
+  <!-- escudo de Neiva y nombre; al dar clic lleva al inicio y sube la página -->
+  <a routerLink="/" class="logo" (click)="subirArriba()">
     <img src="logo-neiva.png" alt="Escudo de Neiva" />
     Festival Folclórico de Neiva
   </a>
   <nav>
-    <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
-    <a routerLink="/programacion" routerLinkActive="activo">Programación</a>
-    <a routerLink="/artistas" routerLinkActive="activo">Artistas</a>
-    <a routerLink="/inscripcion" routerLinkActive="activo">Inscripción</a>
+    <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }" (click)="subirArriba()">Inicio</a>
+    <a routerLink="/programacion" routerLinkActive="activo" (click)="subirArriba()">Programación</a>
+    <a routerLink="/artistas" routerLinkActive="activo" (click)="subirArriba()">Artistas</a>
+    <a routerLink="/inscripcion" routerLinkActive="activo" (click)="subirArriba()">Inscripción</a>
   </nav>
 </header>

@@ -6,4 +6,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
 })
-export class Navbar {}
+export class Navbar {
+  // sube al inicio de la página (sirve cuando ya estás en esa misma página)
+  subirArriba() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
